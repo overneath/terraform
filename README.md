@@ -15,7 +15,8 @@ Please notice that the examples below do not specify image tags which means the 
 The Terraform executable is statically compiled and set as the image entry [`ENTRYPOINT`][dockerfile-entrypoint] with `help` as the default `CMD`:
 
 ```bash
-# this container is not shipped with ca-certificates, so let's set those up (version check and plugin discovery+download)
+# this container is not shipped with ca-certificates, so let's set those up.
+# (supporting version check, plugin discovery+download, provider api interactions ...)
 docker container run --rm -it -v ca-certificates:/etc/ssl/certs alpine apk add --no-cache ca-certificates
 # now we can invoke terraform
 docker container run --rm -it -v ca-certificates:/etc/ssl/certs -v /tmp -v $PWD:$PWD -w $PWD overneath/terraform # [init|plan|apply|destroy|...]
